@@ -1,0 +1,118 @@
+float min(float c[][1024],int k,int l){
+    float MIN = c[0][0];
+
+    int i=0,j;
+    while(i<k){
+        j=0;
+        while(j<l){
+            if(MIN>c[i][j]){
+                MIN = c[i][j];
+            }
+            j = j + 1;
+        }
+        i = i + 1;
+    }
+
+    return MIN;
+}
+
+float max(float c[][1024],int k,int l){
+    float MAX = c[0][0];
+
+    int i=0,j;
+    while(i<k){
+        j=0;
+        while(j<l){
+           if(MAX<c[i][j]){
+               MAX = c[i][j];
+           }
+           j = j + 1;
+        }
+        i = i + 1;
+    }
+
+    return MAX;
+}
+
+
+float sum(float c[][1024],int k,int l){
+    float SUM = 0.0;
+
+    int i=0,j;
+    while(i<k){
+        j=0;
+        while(j<l){
+           SUM = SUM + c[i][j];
+           j = j + 1;
+        }
+        i = i + 1;
+    }
+
+    return SUM;
+}
+
+void add(float c[][1024],float a[][1024],float b[][1024],int k,int l){
+    int i=0,j;
+    while(i<k){
+        j=0;
+        while(j<l){
+           c[i][j] = a[i][j] + b[i][j];
+           j=j+1;
+        }
+        i=i+1;
+    }
+}
+
+void copy(float dst[][1024],float src[][1024],int k,int l){
+    int i=0,j;
+    while(i<k){
+       j=0;
+       while(j<l){
+          dst[i][j] = src[i][j];
+          j=j+1;
+       }
+       i=i+1;
+    }
+}
+
+float a[1024][1024];
+float b[1024][1024];
+float c[1024][1024];
+
+int main(){
+
+
+    int k=1024,l=1024;
+
+    int i=0,j;
+    while(i<k){
+        j=0;
+        while(j<l){
+            a[i][j] = getfloat();
+            j=j+1;
+        }
+        i=i+1;
+    }
+
+    copy(b, a, k, l);
+
+    add(c, a, b, k, l);
+    float max_c;
+    float min_c;
+    float sum_c;
+
+    starttime();
+    max_c = max(c,k,l);
+    min_c = min(c,k,l);
+    sum_c = sum(c,k,l);
+    stoptime();
+
+    putfloat(max_c);
+    putch(10);
+    putfloat(min_c);
+    putch(10);
+    putfloat(sum_c);
+    putch(10);
+
+    return 0;
+}

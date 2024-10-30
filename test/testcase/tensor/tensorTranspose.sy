@@ -1,0 +1,7 @@
+int main(){
+    tensor a[2][3] = {{0, 2, 3}, {4, 5, 6}};
+    tensor b[3][2];
+    __transpose(b, a);
+    puttensor(b);
+    return 0;
+}

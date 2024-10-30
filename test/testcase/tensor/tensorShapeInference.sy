@@ -1,0 +1,8 @@
+int main(){
+    tensor a[2][3] = {{0, 2, 3}, {4, 5, 6}};
+    tensor b;
+    __transpose(b, a);
+    //__copy(b, a); // shape inference error
+    puttensor(b);
+    return 0;
+}

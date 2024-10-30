@@ -1,0 +1,53 @@
+void matmul_vec(float c[],float a[],float b[][1024], int L, int K){
+    int k=0,l=0;
+    while(k<K){
+        l=0;
+        float sum = 0.0;
+        while(l<L){
+            sum = sum + a[l] * b[l][k] ;
+            l = l + 1;
+        }
+        c[k] = sum;
+        k = k + 1;
+    }
+}
+
+float a[1024];
+float b[1024][1024];
+float c[1024];
+
+int main(){
+
+    int l=1024,k=1024;
+
+    int i=0,j=0;
+    while(i<l){
+        a[i] = getfloat();
+        i=i+1;
+    }
+
+    i=0;
+    while(i<l){
+        j=0;
+        while(j<k){
+            b[i][j] = getfloat();
+            j=j+1;
+        }
+       i=i+1;
+    }
+
+    starttime();
+
+    matmul_vec(c,a,b, l,k);
+
+    stoptime();
+
+    i=0;
+    while(i<k){
+        putfloat(c[i]);
+        putch(32);
+        i=i+1;
+    }
+
+    return 0;
+}

@@ -1,0 +1,16 @@
+int main(){
+    tensor a[4][4] = {{1, 2, 3, 4}, {5, 6, 7, 8},{9, 10, 11, 12},{13, 14, 15, 16}};
+    tensor b[4][4];
+    tensor c;
+    __copy(b, a);
+    int k = 0;
+    while(k < 2){
+        __matmul(c, a, b);
+        __clear(b);
+        __matmul(b, a, c);
+        __clear(c);
+        k = k + 1;
+    }
+    puttensor(b);
+    return 0;
+}

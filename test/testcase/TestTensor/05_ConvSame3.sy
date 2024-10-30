@@ -1,0 +1,28 @@
+int main()
+{
+    tensor input[2048][2048];
+    tensor kernel[32][32];
+    tensor result;
+
+    int task = 2;
+    int i=0;
+
+    gettensor(input);
+    gettensor(kernel);
+
+
+    starttime();
+
+    while(i<task){
+        __conv_same(result, input, kernel);
+        __copy(input,result);
+        __clear(result);
+        i=i+1;
+    }
+
+    stoptime();
+
+    puttensor(input);
+
+    return 0;
+}

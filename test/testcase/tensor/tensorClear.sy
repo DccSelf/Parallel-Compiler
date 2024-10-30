@@ -1,0 +1,8 @@
+int main(){
+    tensor a[2][3] = {{0, 2, 3}, {4, 5, 6}};
+    __clear(a);
+    puttensor(a);
+
+
+    return 0;
+}

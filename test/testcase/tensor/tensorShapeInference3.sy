@@ -1,0 +1,18 @@
+void multiply_transpose(tensor a, tensor b, tensor c){
+    tensor at;
+    tensor bt;
+    __transpose(at, a);
+    __transpose(bt, b);
+    __mul(c, at, bt);
+    return;
+}
+
+
+int main(){
+    tensor a[2][3] = {{0, 2, 3}, {4, 5, 6}};
+    tensor b[2][3] = {{1, 2, 1}, {1, 1, 1}};
+    tensor c;
+    multiply_transpose(a, b, c);
+    puttensor(c);
+    return 0;
+}

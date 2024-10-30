@@ -1,0 +1,30 @@
+int main(){
+    tensor a[2048][2048];
+    tensor b[2048][2048];
+    tensor c;
+
+    gettensor(a);
+
+    __copy(b,a);
+
+    __add(c, a, b);
+
+    float max_c;
+    float min_c;
+    float sum_c;
+
+    starttime();
+    max_c = __max(c);
+    min_c = __min(c);
+    sum_c = __sum(c);
+    stoptime();
+
+    putfloat(max_c);
+    putch(10);
+    putfloat(min_c);
+    putch(10);
+    putfloat(sum_c);
+    putch(10);
+
+    return 0;
+}

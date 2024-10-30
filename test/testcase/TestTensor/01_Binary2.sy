@@ -1,0 +1,26 @@
+int main(){
+    tensor a[2048][2048];
+    tensor b[2048][2048];
+    tensor c1[2048][2048];
+    tensor c2[2048][2048];
+    tensor c3[2048][2048];
+    tensor c4[2048][2048];
+
+    gettensor(a);
+    __copy(b,a);
+
+    starttime();
+    __add(c1, a, b);
+    __sub(c2, a, b);
+    __mul(c3, a, b);
+    __div(c4, a, b);
+    stoptime();
+
+    puttensor(c1);
+    puttensor(c2);
+    puttensor(c3);
+    puttensor(c4);
+
+
+    return 0;
+}

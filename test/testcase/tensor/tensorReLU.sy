@@ -1,0 +1,7 @@
+int main(){
+    tensor a[2][4] = {{2,-1,0,1},{-1.1,1,2,2.2}};
+    tensor b;
+    __relu(b, a);
+    puttensor(b);
+    return 0;
+}

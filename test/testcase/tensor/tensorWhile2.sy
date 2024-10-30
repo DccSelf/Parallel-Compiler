@@ -1,0 +1,18 @@
+int main(){
+    tensor a[2][3];
+    tensor b[2][3]; 
+    tensor c;
+
+    gettensor(a);
+    gettensor(b);
+
+    int i = 0;
+    while(i < 2){
+        __add(c, a, b);
+        __add(b, a, c);
+        i = i + 1;
+    }
+
+    puttensor(c);
+    return 0;
+}

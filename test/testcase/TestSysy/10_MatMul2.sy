@@ -1,0 +1,73 @@
+void matmul(float c[][2048],float a[][2048],float b[][2048], int K, int L, int M){
+    int k=0,l=0,m=0;
+    while(k<K){
+        l=0;
+        while(l<L){
+            m=0;
+            float sum = 0.0;
+            while(m<M){
+                sum = sum + a[k][m] * b[m][l];
+                m = m+1;
+            }
+            c[k][l] = sum;
+            l=l+1;
+        }
+        k=k+1;
+    }
+}
+
+
+void copy(float dst[][2048],float src[][2048],int row,int column){
+    int i=0,j=0;
+    while(i<row){
+        j=0;
+        while(j<column){
+            dst[i][j] = src[i][j];
+            j=j+1;
+        }
+        i=i+1;
+    }
+
+}
+
+
+float a[2048][2048];
+float b[2048][2048];
+float c[2048][2048];
+
+int main(){
+
+    int k=2048,l=2048,m=2048;
+
+    int i=0,j=0;
+    while(i<k){
+        j=0;
+        while(j<l){
+            a[i][j] = getfloat();
+            j=j+1;
+        }
+       i=i+1;
+    }
+
+    copy(b,a,k,l);
+
+    starttime();
+
+    matmul(c,a,b, k,l,m);
+
+    stoptime();
+
+    i=0;
+    while(i<k){
+        j=0;
+        while(j<l){
+             putfloat(c[i][j]);
+             putch(32);
+             j=j+1;
+        }
+        i=i+1;
+        putch(10);
+    }
+
+    return 0;
+}

@@ -1,0 +1,17 @@
+int main(){
+    tensor a[1024][1024];
+    tensor b[1024][1024];
+    tensor c;
+
+    gettensor(a);
+    __copy(b, a);
+
+
+    starttime();
+    __matmul(c, a, b);
+    stoptime();
+
+    puttensor(c);
+
+    return 0;
+}

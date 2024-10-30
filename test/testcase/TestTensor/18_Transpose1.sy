@@ -1,0 +1,13 @@
+int main(){
+    tensor a[512][2048];
+    tensor b[2048][512];
+
+    gettensor(a);
+
+    starttime();
+    __transpose(b, a);
+    stoptime();
+
+    puttensor(b);
+    return 0;
+}

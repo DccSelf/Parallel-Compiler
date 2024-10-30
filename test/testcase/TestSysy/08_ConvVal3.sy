@@ -1,0 +1,78 @@
+void conv_valid(float result[][2017], float input[][2048],float kernel[][32], int result_row, int result_column, int k_row, int k_column) {
+	int i=0,j,k,l;
+
+    while(i<result_row){
+        j=0;
+        while(j<result_column){
+            result[i][j] = 0.0;
+            k=0;
+            while(k<k_row){
+                l=0;
+                while(l<k_column){
+                    result[i][j] = result[i][j] +  input[i+k][j+l] * kernel[k][l];
+                    l=l+1;
+                }
+                k=k+1;
+            }
+            j=j+1;
+        }
+        i=i+1;
+    }
+}
+
+float input[2048][2048];
+float kernel[32][32];
+float result[2017][2017];
+
+
+int main()
+{
+
+    int in_row = 2048, in_column = 2048, k_row = 32, k_column = 32;
+    int r_row = in_row - k_row + 1;
+    int r_column = in_column - k_column + 1;
+
+    //getfarray(input);
+    //getfarray(kernel);
+
+    int i=0,j=0;
+    while(i<in_row){
+        j=0;
+        while(j<in_column){
+          input[i][j] = getfloat();
+          j=j+1;
+        }
+        i=i+1;
+    }
+
+    i=0;
+    while(i<k_row){
+        j=0;
+        while(j<k_column){
+            kernel[i][j] = getfloat();
+            j=j+1;
+        }
+        i=i+1;
+    }
+
+    starttime();
+
+    conv_valid(result,input,kernel,r_row,r_column,k_row,k_column);
+
+    stoptime();
+
+    i=0;
+    while(i<r_row){
+        j=0;
+        while(j<r_column){
+             putfloat(result[i][j]);
+             putch(32);
+             j=j+1;
+        }
+        i=i+1;
+        putch(10);
+    }
+
+    return 0;
+
+}

@@ -1,0 +1,17 @@
+void addOrSub(tensor a, tensor b, tensor c, int x){
+    if(x)
+        __add(c, a, b);
+    else
+        __sub(c, a, b);
+    return;
+}
+
+int main(){
+    tensor a[2][3] = {{0, 2, 3}, {4, 5, 6}};
+    tensor b[2][3] = {{1, 2, 3}, {4, 5, 6}};
+    tensor c[2][3];
+    int x = getint();
+    addOrSub(a, b, c, x);
+    puttensor(c);
+    return 0;
+}

@@ -1,0 +1,16 @@
+set(LLVM_TARGET_DEFINITIONS Ops.td)
+mlir_tablegen(Ops.h.inc -gen-op-decls)
+mlir_tablegen(Ops.cpp.inc -gen-op-defs)
+mlir_tablegen(Dialect.h.inc -gen-dialect-decls)
+mlir_tablegen(Dialect.cpp.inc -gen-dialect-defs)
+add_public_tablegen_target(SysyOpsIncGen)
+
+set(LLVM_TARGET_DEFINITIONS ShapeInferenceInterface.td)
+mlir_tablegen(ShapeInferenceOpInterfaces.h.inc -gen-op-interface-decls)
+mlir_tablegen(ShapeInferenceOpInterfaces.cpp.inc -gen-op-interface-defs)
+add_public_tablegen_target(SysyShapeInferenceInterfaceIncGen)
+
+set(LLVM_TARGET_DEFINITIONS EffectInterface.td)
+mlir_tablegen(EffectInterface.h.inc -gen-op-interface-decls)
+mlir_tablegen(EffectInterface.cpp.inc -gen-op-interface-defs)
+add_public_tablegen_target(SysyEffectInterfaceIncGen)

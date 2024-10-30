@@ -1,0 +1,8 @@
+int main(){
+    tensor a[2][3];
+    gettensor(a);
+    tensor b;
+    __transpose(b, a);
+    puttensor(b);
+    return 0;
+}

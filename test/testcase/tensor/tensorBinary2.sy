@@ -1,0 +1,12 @@
+int main(){
+    tensor a[2048][2048];
+    tensor b[2048][2048];
+    tensor c;
+    starttime();
+    __add(c, a, b);
+    __sub(c, a, b);
+    __mul(c, a, b);
+    stoptime();
+    puttensor(c);
+    return 0;
+}

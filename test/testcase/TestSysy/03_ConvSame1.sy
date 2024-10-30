@@ -1,0 +1,136 @@
+void zero_pad(float fill[][1030],float input[][1024],int in_row, int in_column,int k_row,int k_column){
+
+    int fill_row = in_row + k_row - 1;
+    int fill_column = in_column + k_row - 1;
+
+    int start = (k_row - 1)/2;
+    int left = (k_column - 1)/2;
+    int end = start + in_row;
+    int right = left + in_column;
+
+    int i=0,j=0;
+    while(i<fill_row){
+        j=0;
+        while(j<fill_column){
+           fill[i][j] = 0.0f;
+           j=j+1;
+        }
+        i=i+1;
+    }
+
+    i=start;
+    while(i<end){
+        j=left;
+        while(j<right){
+            fill[i][j] = input[i-start][j-left];
+            j=j+1;
+        }
+        i=i+1;
+    }
+}
+
+
+void conv_valid(float result[][1024], float fill[][1030],float kernel[][7], int result_row, int result_column, int k_row, int k_column) {
+	int i=0,j,k,l;
+
+    while(i<result_row){
+        j=0;
+        while(j<result_column){
+            result[i][j] = 0.0;
+            k=0;
+            while(k<k_row){
+                l=0;
+                while(l<k_column){
+                    result[i][j] = result[i][j] +  fill[i+k][j+l] * kernel[k][l];
+                    l=l+1;
+                }
+                k=k+1;
+            }
+            j=j+1;
+        }
+        i=i+1;
+    }
+}
+
+
+void conv_some(float result[][1024],float fill[][1030],float input[][1024],float kernel[][7],int r_row,int r_column,int k_row,int k_column){
+    zero_pad(fill,input,r_row,r_column,k_row,k_column);
+    conv_valid(result,fill,kernel,r_row,r_column,k_row,k_column);
+}
+
+void copy(float dst[][1024],float src[][1024],int row,int column){
+    int i=0;
+    int j;
+    while(i<row){
+        j=0;
+        while(j<column){
+            dst[i][j] = src[i][j];
+            j = j+1;
+        }
+        i = i+1;
+    }
+}
+
+
+float input[1024][1024]; //511,1024正确，513报错。
+float kernel[7][7];
+float fill[1030][1030];
+float result[1024][1024];
+
+
+int main()
+{
+
+    int in_row = 1024, in_column = 1024, k_row = 7, k_column = 7, r_row=1024, r_column=1024;
+
+    int task = 2;
+
+    //getfarray(input);
+    //getfarray(kernel);
+
+    int i=0,j=0;
+    while(i<in_row){
+        j=0;
+        while(j<in_column){
+          input[i][j] = getfloat();
+          j=j+1;
+        }
+        i=i+1;
+    }
+
+    i=0;
+    while(i<k_row){
+        j=0;
+        while(j<k_column){
+            kernel[i][j] = getfloat();
+            j=j+1;
+        }
+        i=i+1;
+    }
+
+    i=0;
+    starttime();
+
+    while(i<task){
+        conv_some(result,fill,input,kernel,r_row,r_column,k_row,k_column);
+        copy(input,result,r_row,r_column);
+        i = i + 1;
+    }
+
+    stoptime();
+
+    i=0;
+    while(i<r_row){
+        j=0;
+        while(j<r_column){
+             putfloat(input[i][j]);
+             putch(32);
+             j=j+1;
+        }
+        i=i+1;
+        putch(10);
+    }
+
+    return 0;
+
+}

@@ -1,0 +1,12 @@
+int main(){
+
+    tensor a[16][16];
+    a = 2;
+
+    tensor c;
+    c = a * 2.0 + 1.5;
+
+    puttensor(c);
+
+    return 0;
+}

@@ -1,0 +1,13 @@
+int main(){
+    tensor a[2048][2048];
+    tensor b[2048][2048];
+    tensor c;
+
+    starttime();
+    __matmul(c, a, b);
+    stoptime();
+
+    putint(__min(c));
+
+    return 0;
+}
